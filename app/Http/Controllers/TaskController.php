@@ -7,26 +7,18 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tasks = Task::all();
         return view('tasks.index', compact('tasks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('tasks.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
 {
     $validated = $request->validate([
@@ -44,17 +36,12 @@ class TaskController extends Controller
                      ->with('success', 'Task created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Task $task)
     {
         return view('tasks.show', compact('task'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Task $task)
     {
     return view('tasks.edit', compact('task'));
@@ -89,7 +76,7 @@ class TaskController extends Controller
 
     public function toggle(Task $task)
     {
-    // Flip the boolean
+
     $task->is_completed = !$task->is_completed;
     $task->save();
 
